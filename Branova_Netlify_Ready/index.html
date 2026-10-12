@@ -26,6 +26,7 @@
     @media(max-width:980px){.links{display:none}.hero-grid,.web-box,.about-box{grid-template-columns:1fr}.hero-art{min-height:400px}.service-grid,.cards,.steps,.client-grid{grid-template-columns:repeat(2,1fr)}.card.featured{transform:none}.hero{padding-top:55px}}
     @media(max-width:620px){.wrap{width:min(100% - 24px,1160px)}.nav{height:68px}.nav-logo{width:128px;height:54px}.nav-cta{display:none}.hero{padding:44px 0}.hero-grid{gap:20px}h1{font-size:2.7rem}.hero-art{min-height:330px}.logo-stage{width:315px}.metric{padding:11px 13px;min-width:135px}.m1{right:-2px;top:18px}.m2{left:-3px;bottom:20px}.m3{left:-5px;top:137px}.service-grid,.cards,.steps,.client-grid,.about-stats{grid-template-columns:1fr}.section-head{display:block}.section-head p{margin-top:12px}.about-box{padding:30px 24px;gap:28px}.client-card{padding:20px;align-items:flex-start}.client-mark{width:58px;height:58px;flex-basis:58px;border-radius:16px;font-size:1.5rem}.web-box{padding:24px}.cta-box{display:block;padding:30px 24px}.cta .primary{margin-top:22px}.footer-row{display:block}.footer-row p{margin:5px 0}section{padding:58px 0}.pricing{padding-bottom:62px}}
   </style>
+  <link rel="stylesheet" href="branova-enhancements.css">
 </head>
 <body>
   <header>
@@ -142,5 +143,6 @@
     document.querySelectorAll('.choose').forEach(btn=>btn.addEventListener('click',()=>{const message='مرحبًا Branova، أريد الاستفسار عن '+btn.dataset.package;window.open('https://wa.me/201559452101?text='+encodeURIComponent(message),'_blank','noopener,noreferrer')}));
     document.getElementById('year').textContent=new Date().getFullYear();
   </script>
+  <script src="branova-enhancements.js" defer></script>
 </body>
 </html>
