@@ -1,0 +1,125 @@
+/* BRANOVA polish layer — keep after the existing inline <style> block. */
+:root {
+  --br-motion: cubic-bezier(.2,.75,.25,1);
+  --br-gold: #b88a48;
+  --br-gold-soft: #d7b56e;
+}
+
+html { scroll-padding-top: 88px; }
+header { transition: box-shadow .28s ease, background-color .28s ease; }
+header.is-scrolled {
+  background: rgba(247,242,233,.96);
+  box-shadow: 0 10px 35px rgba(35,27,18,.09);
+}
+.nav { position: relative; }
+.nav-logo, .hero-logo {
+  mix-blend-mode: multiply;
+  transition: transform .45s var(--br-motion), filter .45s ease;
+}
+.nav-logo:hover { transform: scale(1.035); }
+
+/* A quiet orbital detail keeps the hero polished without distracting from the logo. */
+.logo-stage::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border: 1px solid rgba(164,122,60,.18);
+  border-radius: 50%;
+  box-shadow: 0 0 0 22px rgba(164,122,60,.025), 0 0 0 52px rgba(164,122,60,.018);
+  pointer-events: none;
+  animation: branova-orbit 38s linear infinite;
+}
+.logo-stage::after {
+  content: "";
+  position: absolute;
+  width: 68%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(215,181,110,.16), rgba(215,181,110,0) 70%);
+  pointer-events: none;
+}
+.hero-logo { position: relative; z-index: 1; animation: branova-float 7s ease-in-out infinite; }
+.metric { z-index: 2; animation: branova-float 6s ease-in-out infinite; }
+.m2 { animation-delay: -2s; }
+.m3 { animation-delay: -4s; }
+.eyebrow::before { box-shadow: 0 0 0 0 rgba(164,122,60,.35); animation: branova-pulse 2.4s ease-out infinite; }
+
+.service, .client-card, .card, .step, .web-type {
+  transition: transform .32s var(--br-motion), box-shadow .32s ease, border-color .32s ease;
+}
+.service:hover, .client-card:hover, .web-type:hover { transform: translateY(-6px); }
+.card:hover { transform: translateY(-5px); box-shadow: 0 20px 46px rgba(0,0,0,.2); }
+.card.featured:hover { transform: translateY(-14px); }
+.primary, .nav-cta, .secondary, .choose, .whatsapp-float { transition: transform .25s var(--br-motion), box-shadow .25s ease, background-color .25s ease; }
+.primary:hover, .nav-cta:hover, .secondary:hover, .choose:hover { box-shadow: 0 12px 24px rgba(164,122,60,.18); }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--br-gold-soft); outline-offset: 4px; }
+
+/* Scroll reveals are enabled only when JavaScript is available. */
+html.branova-motion-ready .branova-reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity .72s ease, transform .72s var(--br-motion);
+  transition-delay: var(--br-reveal-delay, 0ms);
+}
+html.branova-motion-ready .branova-reveal.is-visible { opacity: 1; transform: none; }
+.branova-scroll-progress {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 100;
+  height: 3px;
+  background: linear-gradient(90deg, #d7b56e, #a47a3c);
+  transform: scaleX(0);
+  transform-origin: right center;
+  pointer-events: none;
+}
+
+.branova-mobile-toggle, .branova-mobile-menu { display: none; }
+@media (max-width: 980px) {
+  .branova-mobile-toggle {
+    display: inline-flex;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    border: 1px solid var(--line);
+    border-radius: 13px;
+    color: var(--ink);
+    background: rgba(255,255,255,.78);
+    cursor: pointer;
+  }
+  .branova-mobile-toggle span { width: 18px; height: 2px; border-radius: 3px; background: currentColor; transition: transform .2s ease, opacity .2s ease; }
+  .branova-mobile-toggle[aria-expanded="true"] span:first-child { transform: translateY(7px) rotate(45deg); }
+  .branova-mobile-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+  .branova-mobile-toggle[aria-expanded="true"] span:last-child { transform: translateY(-7px) rotate(-45deg); }
+  .branova-mobile-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 25;
+    width: min(280px, calc(100vw - 24px));
+    padding: 9px;
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    background: rgba(255,255,255,.98);
+    box-shadow: 0 18px 46px rgba(35,27,18,.16);
+  }
+  .branova-mobile-menu[data-open="true"] { display: grid; animation: branova-menu-in .2s ease both; }
+  .branova-mobile-menu a { padding: 11px 13px; border-radius: 11px; color: var(--ink); font-weight: 700; }
+  .branova-mobile-menu a:hover { background: #f7f2e9; color: #77531f; }
+}
+@media (max-width: 620px) {
+  .branova-mobile-toggle { width: 42px; height: 42px; }
+  .logo-stage::before { inset: 6%; box-shadow: 0 0 0 15px rgba(164,122,60,.025), 0 0 0 34px rgba(164,122,60,.018); }
+  .hero-logo { animation-duration: 8s; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  html.branova-motion-ready .branova-reveal { opacity: 1; transform: none; }
+}
+@keyframes branova-float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes branova-orbit { to { transform: rotate(360deg); } }
+@keyframes branova-pulse { 70% { box-shadow: 0 0 0 8px rgba(164,122,60,0); } 100% { box-shadow: 0 0 0 0 rgba(164,122,60,0); } }
+@keyframes branova-menu-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
